@@ -1,5 +1,5 @@
-const { hasbin } = require('hasbin')
-const { spawn } = require('child_process')
+import { hasbin } from 'hasbin'
+import { spawn } from 'child_process'
 
 export default class Gphoto2 {
     constructor(gphoto2Location) {
@@ -10,6 +10,10 @@ export default class Gphoto2 {
         this.configs = []
     }
 
+    /**
+     * 
+     * @param {*} callback 
+     */
     listCameras(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-cameras'])
         process.stdout.on('data', (data) => callback(data))
