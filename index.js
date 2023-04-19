@@ -1,19 +1,16 @@
-import { hasbin } from 'hasbin'
 import { spawn } from 'child_process'
+import { existsSync } from 'fs';
+import hasbin from 'hasbin'
 
 export default class Gphoto2 {
     constructor(gphoto2Location) {
-        if(!gphoto2Location && hasbin.sync("gphoto2") == undefined) {
-            throw console.error("Unable to find gphoto2 binary");
+        if(!existsSync(gphoto2Location) && !hasbin.sync("gphoto2")) {
+            throw console.error("Unable to find gphoto2 binary")
         }
         this.gphoto2Binary = gphoto2Location || hasbin.sync("gphoto2")
         this.configs = []
     }
 
-    /**
-     * 
-     * @param {*} callback 
-     */
     listCameras(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-cameras'])
         process.stdout.on('data', (data) => callback(data))
@@ -65,7 +62,7 @@ export default class Gphoto2 {
             return config.path == _path
         })
         if(index == -1) {
-            this.configs.push({path: configPath[0], value: configs[1]})
+            this.configs.push({path: _path, value: value[1]})
         }
         else {
             this.configs[index] = {path: _path, value: value}
