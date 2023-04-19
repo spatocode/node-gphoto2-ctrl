@@ -1,0 +1,22 @@
+{
+  "name": "node-gphoto2-ctrl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spatocode/node-gphoto2-ctrl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spatocode/node-gphoto2-ctrl/issues"
+  },
+  "homepage": "https://github.com/spatocode/node-gphoto2-ctrl#readme",
+  "dependencies": {
+    "hasbin": "^1.2.3"
+  }
+}
