@@ -1,4 +1,4 @@
-const Gphoto2 = require("node-gphoto2-ctrl");
+import Gphoto2 from "node-gphoto2-ctrl";
 
 const gphoto2 = new Gphoto2("./gphoto2.exe")
 
