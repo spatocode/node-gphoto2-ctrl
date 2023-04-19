@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/spatocode/node-gphoto2-ctrl.git"
   },
+  "type": "module",
+	"exports": {
+		"node": "./index.js"
+	},
   "author": "",
   "license": "ISC",
   "bugs": {
