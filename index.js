@@ -13,33 +13,33 @@ export default class Gphoto2 {
 
     listCameras(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-cameras'])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     listPorts(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-ports'])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     listFiles(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-files'])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     getFile(fileRange, callback) {
         const process = spawn(this.gphoto2Binary, [`--get-file ${fileRange}`])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     getAllFiles(callback) {
         const params = ['--get-all-files']
         const process = spawnSync(this.gphoto2Binary, params)
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     captureImage(interval, hookScript, callback) {
@@ -49,7 +49,7 @@ export default class Gphoto2 {
             `--hook-script ${hookScript}`
         ]
         const process = spawn(this.gphoto2Binary, params)
-        process.stderr.on('data', (err) => callback(err))
+        process.stderr.on('data', (err) => callback(err.toString()))
     }
 
     _queueConfigCommand(config) {
@@ -74,28 +74,28 @@ export default class Gphoto2 {
         }
         this._queueConfigCommand(config)
         const process = spawn(this.gphoto2Binary, ['--set-config', `${config}`])
-        process.stderr.on('data', (err) => callback(err))
+        process.stderr.on('data', (err) => callback(err.toString()))
     }
 
     setConfigValue(config, callback) {
         const process = spawn(this.gphoto2Binary, ['--set-config-value', `${config}`])
-        process.stderr.on('data', (err) => callback(err))
+        process.stderr.on('data', (err) => callback(err.toString()))
     }
 
     getConfig(config, callback) {
         const process = spawn(this.gphoto2Binary, ['--get-config', `${config}`])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     listConfig(callback) {
         const process = spawn(this.gphoto2Binary, ['--list-config'])
-        process.stdout.on('data', (data) => callback(data))
-        process.stderr.on('data', (err) => callback(null, err))
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
     reset(callback) {
         const process = spawn(this.gphoto2Binary, ['--reset'])
-        process.stderr.on('data', (err) => callback(err))
+        process.stderr.on('data', (err) => callback(err.toString()))
     }
 }
