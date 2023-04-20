@@ -52,7 +52,7 @@ export default class Gphoto2 {
         process.stderr.on('data', (err) => callback(err.toString()))
     }
 
-    _queueConfigCommand(config) {
+    queueConfigCommand(config) {
         const configPath = config.split("=")
         const _path = configPath[0]
         const value = configPath[1]
@@ -72,7 +72,6 @@ export default class Gphoto2 {
         if(!config && !config.includes("=")) {
             throw console.error("Missing proper config parameter")
         }
-        this._queueConfigCommand(config)
         const process = spawn(this.gphoto2Binary, ['--set-config', `${config}`])
         process.stderr.on('data', (err) => callback(err.toString()))
     }
