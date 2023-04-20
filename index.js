@@ -93,6 +93,12 @@ export default class Gphoto2 {
         process.stderr.on('data', (err) => callback(null, err.toString()))
     }
 
+    listAllConfig(callback) {
+        const process = spawn(this.gphoto2Binary, ['--list-all-config'])
+        process.stdout.on('data', (data) => callback(data.toString()))
+        process.stderr.on('data', (err) => callback(null, err.toString()))
+    }
+
     reset(callback) {
         const process = spawn(this.gphoto2Binary, ['--reset'])
         process.stderr.on('data', (err) => callback(err.toString()))
