@@ -7,7 +7,7 @@ export default class Gphoto2 {
         if(!existsSync(gphoto2Location) && !hasbin.sync("gphoto2")) {
             throw console.error("Unable to find gphoto2 binary")
         }
-        this.gphoto2Binary = gphoto2Location || hasbin.sync("gphoto2")
+        this.gphoto2Binary = gphoto2Location || "gphoto2"
         this.configs = []
     }
 
